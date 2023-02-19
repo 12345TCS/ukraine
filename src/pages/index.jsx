@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
   VStack,
+  useToast,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { BsCurrencyDollar, BsPaypal } from 'react-icons/bs'
@@ -20,6 +21,7 @@ import '@splidejs/react-splide/css/core'
 import Link from 'next/link'
 
 const Index = () => {
+  const Toast = useToast()
   const [navbarBg, setNavbarBg] = useState("linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0))")
   const changeBackground = () => {
     if (window.scrollY >= 66) {
@@ -32,6 +34,14 @@ const Index = () => {
     window.addEventListener("scroll", changeBackground)
   })
 
+  function showToast(){
+    Toast({
+      status: "success",
+      title: "New Donation",
+      description: "Someone just donated $8.",
+      position: "bottom-left",
+    })
+  }
 
   return (
     <>
@@ -51,6 +61,7 @@ const Index = () => {
           Support Ukraine
         </Text>
         <Button
+        onClick={()=>showToast()}
           colorScheme={'yellow'}
           bg={'#ffd700'}
           rounded={'full'}
@@ -89,6 +100,7 @@ const Index = () => {
             p={4} spacing={8}
           >
             <Button
+            onClick={()=>showToast()}
               rounded={'full'} px={6}
               colorScheme={'facebook'}
               bg={'#0057b7'} py={6}
@@ -98,6 +110,7 @@ const Index = () => {
               Donate With Paypal
             </Button>
             <Button
+            onClick={()=>showToast()}
               rounded={'full'} px={6}
               colorScheme={'yellow'}
               bg={'#ffd700'} py={6}
@@ -141,6 +154,7 @@ const Index = () => {
             a peaceful resolution of the conflict.
           </Text>
           <Button
+          onClick={()=>showToast()}
             rounded={'full'} px={6}
             colorScheme={'facebook'}
             bg={'#0057b7'} py={6}
@@ -160,13 +174,17 @@ const Index = () => {
         bgRepeat={'no-repeat'}
         bgAttachment={'fixed'}
       >
-        <Text fontWeight={'semibold'} fontSize={'2xl'} color={'#222'}>Our Message</Text>
+        <Text fontWeight={'semibold'} fontSize={'2xl'} color={'#222'}>Our Mission</Text>
         <Text py={6} color={'#111'} textAlign={'center'}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Deleniti cumque dolorum quas vel, eligendi a ipsam ut inventore nobis deserunt,
-          animi in omnis quod debitis. Praesentium alias cupiditate placeat reiciendis facere,
-          ad consequuntur voluptatem perferendis provident fugit voluptates quae, cumque,
-          ducimus corrupti tempore expedita eos. Quibusdam praesentium vel debitis. Consequuntur.
+          We know how it feels when you lose your loved ones. 
+          Wars are the worst thing humans can do against each other. 
+          Those who want wars to happen never go in the battlefield and 
+          those who fight in the battlefield NEVER want wars to happen. 
+          We can't stop this war, and we don't even know how long it would last for. 
+          But we can make sure to save every single life we can. We can provide them 
+          food, shelter, water, safety and everything else in our capacity to safeguard them.
+          <br />
+          And this is our only mission!
         </Text>
         <Text fontSize={'lg'}>
           - John Doe, Founder
@@ -374,6 +392,7 @@ const Index = () => {
           p={4} spacing={8}
         >
           <Button
+          onClick={()=>showToast()}
             rounded={'full'} px={6}
             colorScheme={'yellow'}
             bg={'#ffd700'} py={6}
@@ -383,6 +402,7 @@ const Index = () => {
             Donate With Paypal
           </Button>
           <Button
+          onClick={()=>showToast()}
             rounded={'full'} px={6}
             colorScheme={'yellow'}
             bg={'#ffd700'} py={6}
