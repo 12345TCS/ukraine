@@ -87,12 +87,12 @@ const Index = () => {
     });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     if (window.Tawk_API) {
       window.Tawk_API.hideWidget();
     }
   })
-  
+
   return (
     <>
       <Head>
@@ -131,14 +131,14 @@ const Index = () => {
 
         </HStack>
         <Box
-          w={'full'} h={['80vh', '100vh']}
+          w={'full'} minH={['80vh', '100vh']}
           bgImg={'/war.jpg'} bgPos={'center'}
           bgSize={'cover'} bgRepeat={'no-repeat'}
         >
           <VStack
             alignItems={'center'}
             justifyContent={'center'}
-            h={'full'} w={'full'}
+            minH={'inherit'} w={'full'}
             bg={'rgba(0,0,0,0.45)'}
           >
             <Typed
@@ -169,18 +169,20 @@ const Index = () => {
                 Donate With Paypal
               </Button> */}
             <Box w={'full'} h={16}></Box>
-            <PayPalButtons
-              style={{
-                color: "gold",
-                shape: "pill",
-                label: "pay",
-                tagline: false,
-                layout: "vertical",
-              }}
-              createOrder={createOrder}
-              onApprove={onApprove}
-              className={'paypal'}
-            />
+            <Box w={['full', 'sm']}>
+              <PayPalButtons
+                style={{
+                  color: "gold",
+                  shape: "pill",
+                  label: "pay",
+                  tagline: false,
+                  layout: "vertical",
+                }}
+                createOrder={createOrder}
+                onApprove={onApprove}
+                className={'paypal'}
+              />
+            </Box>
             {/* </Stack> */}
           </VStack>
         </Box>
@@ -290,7 +292,7 @@ const Index = () => {
                   bgImg={'https://foreignpolicy.com/wp-content/uploads/2022/06/Ukraine-war-evacuation-GettyImages-1238943539.jpg?w=800&h=533&quality=90'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  
+
                 </VStack>
               </SplideSlide>
               <SplideSlide>
@@ -299,7 +301,7 @@ const Index = () => {
                   bgImg={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcThrDKv9tf2pQVdMHdO1TVP63-5wcosWmfp68GCeo62ogJzZGsqcwE7dnHh2sOtOyGY&usqp=CAU'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  
+
                 </VStack>
               </SplideSlide>
               <SplideSlide>
@@ -308,7 +310,7 @@ const Index = () => {
                   bgImg={'https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/NQH6WSU3EQI6ZGMHTXHO4YVD6Y.jpg'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  
+
                 </VStack>
               </SplideSlide>
               <SplideSlide>
@@ -317,7 +319,7 @@ const Index = () => {
                   bgImg={'https://ep00.epimg.net/infografias/2022/02/ucrania/fotos8mar/1.jpg?v5'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  
+
                 </VStack>
               </SplideSlide>
 
@@ -449,29 +451,8 @@ const Index = () => {
           </Stack>
 
           <Text fontSize={'2xl'} textAlign={'center'}>Come, be a part of this intiative.</Text>
-          <Stack
-            direction={['column', 'row']}
-            p={4} spacing={8}
-          >
-            {/* <Button
-              rounded={'full'} px={6}
-              colorScheme={'yellow'}
-              bg={'#ffd700'} py={6}
-              fontWeight={'semibold'}
-              leftIcon={<BsPaypal />}
-            >
-              Donate With Paypal
-            </Button>
-            <Button
-              rounded={'full'} px={6}
-              colorScheme={'yellow'}
-              bg={'#ffd700'} py={6}
-              fontWeight={'semibold'}
-              leftIcon={<FaStripeS />}
-            >
-              Donate With Stripe
-            </Button> */}
 
+          <Box w={['full', 'sm']}>
             <PayPalButtons
               style={{
                 color: "gold",
@@ -484,7 +465,7 @@ const Index = () => {
               onApprove={onApprove}
               className={'paypal'}
             />
-          </Stack>
+          </Box>
         </VStack>
         {/* <VStack p={4} bg={'blue.900'} color={'white'}>
            <Link href={'https://dezynation.com/'} target={'_blank'}>
