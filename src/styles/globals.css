@@ -19,3 +19,6 @@
 .paypal{
     transform: scale(1.1);
 }
+.tawk-mobile{
+    display: none !important;
+}

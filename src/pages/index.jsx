@@ -19,6 +19,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css/skyblue'
 import '@splidejs/react-splide/css/core'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
+import Script from 'next/script'
 
 const Index = () => {
   const [succeeded, setSucceeded] = useState(false);
@@ -52,7 +53,7 @@ const Index = () => {
               value: 499,
             },
           },
-          
+
         ],
         // remove the applicaiton_context object if you need your users to add a shipping address
         application_context: {
@@ -86,11 +87,20 @@ const Index = () => {
     });
   }
 
+  useEffect(()=>{
+    if (window.Tawk_API) {
+      window.Tawk_API.hideWidget();
+    }
+  })
+  
   return (
     <>
       <Head>
         <title>Support Ukraine</title>
       </Head>
+      <Script
+        src='https://embed.tawk.to/63f37ceb4247f20fefe19b31/1gpnhvuj1'
+      />
       <PayPalScriptProvider options={{ "client-id": "Ad8vTPb9ZG1mxUEriVvMvN1ddGhX36Eagc51VGMAoAoXXayNHcL0uJJYUIItYd5Z446g8Vm4BDFrjlYR" }}>
         <HStack
           p={4} bg={navbarBg} pos={'fixed'}
@@ -123,6 +133,7 @@ const Index = () => {
         <Box
           w={'full'} h={['80vh', '100vh']}
           bgImg={'/war.jpg'} bgPos={'center'}
+          bgSize={'cover'} bgRepeat={'no-repeat'}
         >
           <VStack
             alignItems={'center'}
