@@ -286,46 +286,38 @@ const Index = () => {
             >
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['40vh', 'lg']}
-                  bgImg={'/war.jpg'} bgSize={'cover'}
+                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  bgImg={'https://foreignpolicy.com/wp-content/uploads/2022/06/Ukraine-war-evacuation-GettyImages-1238943539.jpg?w=800&h=533&quality=90'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  <Box w={'full'} bg={'blackAlpha.700'} p={4} color={'white'}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, facere?
-                  </Box>
+                  
                 </VStack>
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['40vh', 'lg']}
-                  bgImg={'/war.jpg'} bgSize={'cover'}
+                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  bgImg={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcThrDKv9tf2pQVdMHdO1TVP63-5wcosWmfp68GCeo62ogJzZGsqcwE7dnHh2sOtOyGY&usqp=CAU'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  <Box w={'full'} bg={'blackAlpha.700'} p={4} color={'white'}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, facere?
-                  </Box>
+                  
                 </VStack>
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['40vh', 'lg']}
-                  bgImg={'/war.jpg'} bgSize={'cover'}
+                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  bgImg={'https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/NQH6WSU3EQI6ZGMHTXHO4YVD6Y.jpg'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  <Box w={'full'} bg={'blackAlpha.700'} p={4} color={'white'}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, facere?
-                  </Box>
+                  
                 </VStack>
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['40vh', 'lg']}
-                  bgImg={'/war.jpg'} bgSize={'cover'}
+                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  bgImg={'https://ep00.epimg.net/infografias/2022/02/ucrania/fotos8mar/1.jpg?v5'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
-                  <Box w={'full'} bg={'blackAlpha.700'} p={4} color={'white'}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, facere?
-                  </Box>
+                  
                 </VStack>
               </SplideSlide>
 
