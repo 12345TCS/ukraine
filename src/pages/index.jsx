@@ -50,7 +50,7 @@ const Index = () => {
           {
             amount: {
               // charge users $499 per order
-              value: 499,
+              value: 1,
             },
           },
 
