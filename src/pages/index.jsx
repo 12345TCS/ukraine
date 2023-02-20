@@ -262,7 +262,7 @@ const Index = () => {
             And this is our only mission!
           </Text>
         </VStack>
-        <VStack p={[8, 16]}>
+        <VStack p={[4, 16]}>
           <Text
             fontSize={'sm'} color={'#666'}
             textTransform={'uppercase'}
@@ -288,7 +288,7 @@ const Index = () => {
             >
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  w={['90vw', '80vw']} h={['60vh', 'lg']}
                   bgImg={'https://foreignpolicy.com/wp-content/uploads/2022/06/Ukraine-war-evacuation-GettyImages-1238943539.jpg?w=800&h=533&quality=90'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
@@ -297,7 +297,7 @@ const Index = () => {
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  w={['90vw', '80vw']} h={['60vh', 'lg']}
                   bgImg={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcThrDKv9tf2pQVdMHdO1TVP63-5wcosWmfp68GCeo62ogJzZGsqcwE7dnHh2sOtOyGY&usqp=CAU'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
@@ -306,7 +306,7 @@ const Index = () => {
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  w={['90vw', '80vw']} h={['60vh', 'lg']}
                   bgImg={'https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/NQH6WSU3EQI6ZGMHTXHO4YVD6Y.jpg'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
@@ -315,7 +315,7 @@ const Index = () => {
               </SplideSlide>
               <SplideSlide>
                 <VStack
-                  w={['full', '80vw']} h={['60vh', 'lg']}
+                  w={['90vw', '80vw']} h={['60vh', 'lg']}
                   bgImg={'https://ep00.epimg.net/infografias/2022/02/ucrania/fotos8mar/1.jpg?v5'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
