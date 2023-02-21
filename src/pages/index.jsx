@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
   HStack,
-  Spacer,
   Button,
   Text,
   Image,
@@ -9,6 +8,14 @@ import {
   Stack,
   VStack,
   useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { BsCurrencyDollar, BsPaypal } from 'react-icons/bs'
@@ -26,6 +33,8 @@ const Index = () => {
   const [paypalErrorMessage, setPaypalErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
   const [billingDetails, setBillingDetails] = useState("");
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const Toast = useToast()
   const [navbarBg, setNavbarBg] = useState("linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0))")
@@ -83,7 +92,7 @@ const Index = () => {
   const onError = (data, actions) => {
     Toast({
       status: "error",
-      description: "Something went wrong with your payment",
+      description: "We couldn't capture your payment",
     });
   }
 
@@ -101,7 +110,7 @@ const Index = () => {
       <Script
         src='https://embed.tawk.to/63f37ceb4247f20fefe19b31/1gpnhvuj1'
       />
-      <PayPalScriptProvider options={{ "client-id": "Ad8vTPb9ZG1mxUEriVvMvN1ddGhX36Eagc51VGMAoAoXXayNHcL0uJJYUIItYd5Z446g8Vm4BDFrjlYR" }}>
+      <PayPalScriptProvider options={{ "client-id": "AZtYp6sQ8dPtLtnnEnD2WeuxZxrpm2PL-vXZSZC_ga77859UX7ubwZLYT-8gBsEdr0rP4CoSB6L8uqJL" }}>
         <HStack
           p={4} bg={navbarBg} pos={'fixed'}
           justifyContent={'space-between'}
@@ -116,18 +125,16 @@ const Index = () => {
           >
             Support Ukraine
           </Text>
-          <PayPalButtons
-            style={{
-              color: "gold",
-              shape: "pill",
-              label: "pay",
-              tagline: false,
-              layout: "horizontal",
-            }}
-            createOrder={createOrder}
-            onApprove={onApprove}
-            className={'paypal'}
-          />
+          <Button
+            rounded={'full'} px={6}
+            colorScheme={'yellow'}
+            bg={'#ffd700'} py={6}
+            fontWeight={'semibold'}
+            leftIcon={<BsPaypal />}
+            onClick={onOpen}
+          >
+            Donate With Paypal
+          </Button>
 
         </HStack>
         <Box
@@ -159,30 +166,17 @@ const Index = () => {
               direction={['column', 'row']}
               p={4} spacing={8}
             > */}
-            {/* <Button
-                rounded={'full'} px={6}
-                colorScheme={'facebook'}
-                bg={'#0057b7'} py={6}
-                fontWeight={'semibold'}
-                leftIcon={<BsPaypal />}
-              >
-                Donate With Paypal
-              </Button> */}
             <Box w={'full'} h={16}></Box>
-            <Box w={['full', 'sm']}>
-              <PayPalButtons
-                style={{
-                  color: "gold",
-                  shape: "pill",
-                  label: "pay",
-                  tagline: false,
-                  layout: "vertical",
-                }}
-                createOrder={createOrder}
-                onApprove={onApprove}
-                className={'paypal'}
-              />
-            </Box>
+            <Button
+              rounded={'full'} px={6}
+              colorScheme={'facebook'}
+              bg={'#0057b7'} py={6}
+              fontWeight={'semibold'}
+              leftIcon={<BsPaypal />}
+              onClick={onOpen}
+            >
+              Donate With Paypal
+            </Button>
             {/* </Stack> */}
           </VStack>
         </Box>
@@ -217,27 +211,16 @@ const Index = () => {
               with the assistance they need. Our ultimate goal is to alleviate their suffering and contribute to
               a peaceful resolution of the conflict.
             </Text>
-            {/* <Button
+            <Button
               rounded={'full'} px={6}
               colorScheme={'facebook'}
               bg={'#0057b7'} py={6}
               fontWeight={'semibold'}
               leftIcon={<BsPaypal />}
+              onClick={onOpen}
             >
               Gift Them A Smile
-            </Button> */}
-
-            <PayPalButtons
-              style={{
-                color: "blue",
-                shape: "pill",
-                label: "pay",
-                tagline: false,
-                layout: "vertical",
-              }}
-              createOrder={createOrder}
-              onApprove={onApprove}
-            />
+            </Button>
           </Box>
           <Image src='/child.png' w={['full', 'sm']} roundedBottom={16} />
         </Stack>
@@ -452,26 +435,61 @@ const Index = () => {
 
           <Text fontSize={'2xl'} textAlign={'center'}>Come, be a part of this intiative.</Text>
 
-          <Box w={['full', 'sm']}>
-            <PayPalButtons
-              style={{
-                color: "gold",
-                shape: "pill",
-                label: "pay",
-                tagline: false,
-                layout: "vertical",
-              }}
-              createOrder={createOrder}
-              onApprove={onApprove}
-              className={'paypal'}
-            />
-          </Box>
+
+          <Button
+            rounded={'full'} px={6}
+            colorScheme={'yellow'}
+            bg={'#ffd700'} py={6}
+            fontWeight={'semibold'}
+            leftIcon={<BsPaypal />}
+            onClick={onOpen}
+          >
+            Donate With Paypal
+          </Button>
         </VStack>
         {/* <VStack p={4} bg={'blue.900'} color={'white'}>
            <Link href={'https://dezynation.com/'} target={'_blank'}>
            <Text color={'white'} textAlign={'center'}>Designed, developed and being mantained by Dezynation</Text>
            </Link>
       </VStack> */}
+
+
+
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Donate</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Box
+                w={['full', 'sm']} p={6}
+                id={'paypal-donate-button-container'}
+              >
+                <PayPalButtons
+                  style={{
+                    color: "gold",
+                    shape: "pill",
+                    label: "paypal",
+                    tagline: false,
+                    layout: "vertical",
+                  }}
+                  createOrder={createOrder}
+                  onApprove={onApprove}
+                  onError={onError}
+                  onCancel={onError}
+                  className={'paypal'}
+                />
+              </Box>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
       </PayPalScriptProvider>
     </>
   )
