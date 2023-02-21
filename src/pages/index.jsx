@@ -281,7 +281,7 @@ const Index = () => {
               <SplideSlide>
                 <VStack
                   w={['90vw', '80vw']} h={['60vh', 'lg']}
-                  bgImg={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcThrDKv9tf2pQVdMHdO1TVP63-5wcosWmfp68GCeo62ogJzZGsqcwE7dnHh2sOtOyGY&usqp=CAU'} bgSize={'cover'}
+                  bgImg={'https://npr.brightspotcdn.com/dims4/default/f48a330/2147483647/strip/true/crop/7900x4866+0+201/resize/880x542!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F57%2F9c%2F919063884b83914b271600db21ec%2Fgettyimages-1388184260.jpg'} bgSize={'cover'}
                   justifyContent={'flex-end'}
                 >
 
