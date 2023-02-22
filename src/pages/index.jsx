@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Input,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { BsCurrencyDollar, BsPaypal } from 'react-icons/bs'
@@ -35,6 +36,8 @@ const Index = () => {
   const [billingDetails, setBillingDetails] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const [amount, setAmount] = useState("1")
 
   const Toast = useToast()
   const [navbarBg, setNavbarBg] = useState("linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0))")
@@ -59,7 +62,7 @@ const Index = () => {
           {
             amount: {
               // charge users $499 per order
-              value: 1,
+              value: amount,
             },
           },
 
@@ -84,7 +87,8 @@ const Index = () => {
       Toast({
         status: "success",
         title: "Thanks!",
-        description: "Your donation was collected!"
+        description: "Your donation was collected!",
+        position: "top-right"
       })
     })
   };
@@ -93,6 +97,7 @@ const Index = () => {
     Toast({
       status: "error",
       description: "We couldn't capture your payment",
+      position: "top-right"
     });
   }
 
@@ -110,7 +115,7 @@ const Index = () => {
       <Script
         src='https://embed.tawk.to/63f37ceb4247f20fefe19b31/1gpnhvuj1'
       />
-      <PayPalScriptProvider options={{ "client-id": "AZtYp6sQ8dPtLtnnEnD2WeuxZxrpm2PL-vXZSZC_ga77859UX7ubwZLYT-8gBsEdr0rP4CoSB6L8uqJL" }}>
+      <PayPalScriptProvider options={{ "client-id": "AZtYp6sQ8dPtLtnnEnD2WeuxZxrpm2PL-vXZSZC_ga77859UX7ubwZLYT-8gBsEdr0rP4CoSB6L8uqJL", "currency": "USD" }}>
         <HStack
           p={4} bg={navbarBg} pos={'fixed'}
           justifyContent={'space-between'}
@@ -130,10 +135,9 @@ const Index = () => {
             colorScheme={'yellow'}
             bg={'#ffd700'} py={6}
             fontWeight={'semibold'}
-            leftIcon={<BsPaypal />}
             onClick={onOpen}
           >
-            Donate With Paypal
+            Donate
           </Button>
 
         </HStack>
@@ -172,10 +176,9 @@ const Index = () => {
               colorScheme={'facebook'}
               bg={'#0057b7'} py={6}
               fontWeight={'semibold'}
-              leftIcon={<BsPaypal />}
               onClick={onOpen}
             >
-              Donate With Paypal
+              Donate Now
             </Button>
             {/* </Stack> */}
           </VStack>
@@ -216,7 +219,6 @@ const Index = () => {
               colorScheme={'facebook'}
               bg={'#0057b7'} py={6}
               fontWeight={'semibold'}
-              leftIcon={<BsPaypal />}
               onClick={onOpen}
             >
               Gift Them A Smile
@@ -441,10 +443,9 @@ const Index = () => {
             colorScheme={'yellow'}
             bg={'#ffd700'} py={6}
             fontWeight={'semibold'}
-            leftIcon={<BsPaypal />}
             onClick={onOpen}
           >
-            Donate With Paypal
+            Donate Now
           </Button>
         </VStack>
         {/* <VStack p={4} bg={'blue.900'} color={'white'}>
@@ -461,6 +462,14 @@ const Index = () => {
             <ModalHeader>Donate</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
+              <HStack spacing={4} w={['full', 'sm']}>
+                <Text w={'48'}>Enter Amount</Text>
+                <Input
+                  value={amount}
+                  type={'number'}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </HStack>
               <Box
                 w={['full', 'sm']} p={6}
                 id={'paypal-donate-button-container'}
