@@ -28,6 +28,7 @@ import '@splidejs/react-splide/css/skyblue'
 import '@splidejs/react-splide/css/core'
 import { PayPalButtons, PayPalScriptProvider, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import Script from 'next/script'
+import Link from 'next/link'
 
 const Index = () => {
   const [succeeded, setSucceeded] = useState(false);
@@ -38,7 +39,7 @@ const Index = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [myAmount, setMyAmount] = useState("1")
+  const [myAmount, setMyAmount] = useState("100")
 
   const Toast = useToast()
   const [navbarBg, setNavbarBg] = useState("linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6), rgba(0,0,0,0))")
@@ -459,11 +460,11 @@ const Index = () => {
           Donate Now
         </Button>
       </VStack>
-      {/* <VStack p={4} bg={'blue.900'} color={'white'}>
-           <Link href={'https://dezynation.com/'} target={'_blank'}>
-           <Text color={'white'} textAlign={'center'}>Designed, developed and being mantained by Dezynation</Text>
+      <VStack p={4} bg={'blue.900'} color={'white'}>
+           <Link href={'mailto:support@helpukrainepeoples.com'} target={'_blank'}>
+           <Text color={'white'} textAlign={'center'}>Write to us at <span style={{color:'#ffd700'}}>support@helpukrainepeoples.com</span> for any queries</Text>
            </Link>
-          </VStack> */}
+          </VStack>
 
 
 
@@ -483,7 +484,7 @@ const Index = () => {
             <HStack w={['full', 'sm']} p={4}>
               <Input 
               type={'button'} 
-              value={"5"} 
+              value={"50"} 
               bg={'#0057b7'} 
               color={'white'}
               onClick={updateAmount}
@@ -491,7 +492,7 @@ const Index = () => {
               />
               <Input 
               type={'button'} 
-              value={"15"} 
+              value={"100"} 
               bg={'#0057b7'} 
               color={'white'}
               onClick={updateAmount}
@@ -499,7 +500,7 @@ const Index = () => {
               />
               <Input 
               type={'button'} 
-              value={"25"} 
+              value={"200"} 
               bg={'#0057b7'} 
               color={'white'}
               onClick={updateAmount}
