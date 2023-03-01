@@ -35,7 +35,7 @@ const Index = () => {
   const [paypalErrorMessage, setPaypalErrorMessage] = useState("");
   const [orderID, setOrderID] = useState(false);
   const [billingDetails, setBillingDetails] = useState("");
-  const [{options},dispatch] = usePayPalScriptReducer()
+  const [{ options }, dispatch] = usePayPalScriptReducer()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -57,34 +57,34 @@ const Index = () => {
   function updateAmount({ target: { value } }) {
     setMyAmount(value)
     dispatch({
-        type: "resetOptions",
-        value: {
-            ...options,
-        },
+      type: "resetOptions",
+      value: {
+        ...options,
+      },
     })
-    
+
   }
 
 
   // creates a paypal order
   const createOrder = (data, actions) => {
     return actions.order.create({
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            amount: {
-              // charge users $499 per order
-              value: myAmount,
-              currency_code: "USD"
-            },
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            // charge users $499 per order
+            value: myAmount,
+            currency_code: "USD"
           },
-
-        ],
-        // remove the applicaiton_context object if you need your users to add a shipping address
-        application_context: {
-          shipping_preference: "NO_SHIPPING",
         },
-      })
+
+      ],
+      // remove the applicaiton_context object if you need your users to add a shipping address
+      application_context: {
+        shipping_preference: "NO_SHIPPING",
+      },
+    })
       .then((orderID) => {
         setOrderID(orderID);
         return orderID;
@@ -127,6 +127,16 @@ const Index = () => {
       </Head>
       <Script
         src='https://embed.tawk.to/63f37ceb4247f20fefe19b31/1gpnhvuj1'
+      />
+      <Script src={'https://www.googletagmanager.com/gtag/js?id=G-M9J19YDLPD'} />
+      <Script
+        dangerouslySetInnerHTML={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          
+          gtag('config', 'G-M9J19YDLPD');
+      `}
       />
       <HStack
         p={4} bg={navbarBg} pos={'fixed'}
@@ -461,10 +471,10 @@ const Index = () => {
         </Button>
       </VStack>
       <VStack p={4} bg={'blue.900'} color={'white'}>
-           <Link href={'mailto:support@helpukrainepeoples.com'} target={'_blank'}>
-           <Text color={'white'} textAlign={'center'}>Write to us at <span style={{color:'#ffd700'}}>support@helpukrainepeoples.com</span> for any queries</Text>
-           </Link>
-          </VStack>
+        <Link href={'mailto:support@helpukrainepeoples.com'} target={'_blank'}>
+          <Text color={'white'} textAlign={'center'}>Write to us at <span style={{ color: '#ffd700' }}>support@helpukrainepeoples.com</span> for any queries</Text>
+        </Link>
+      </VStack>
 
 
 
@@ -482,50 +492,50 @@ const Index = () => {
               />
             </HStack>
             <HStack w={['full', 'sm']} p={4}>
-              <Input 
-              type={'button'} 
-              value={"50"} 
-              bg={'#0057b7'} 
-              color={'white'}
-              onClick={updateAmount}
-              cursor={'pointer'}
+              <Input
+                type={'button'}
+                value={"50"}
+                bg={'#0057b7'}
+                color={'white'}
+                onClick={updateAmount}
+                cursor={'pointer'}
               />
-              <Input 
-              type={'button'} 
-              value={"100"} 
-              bg={'#0057b7'} 
-              color={'white'}
-              onClick={updateAmount}
-              cursor={'pointer'}
+              <Input
+                type={'button'}
+                value={"100"}
+                bg={'#0057b7'}
+                color={'white'}
+                onClick={updateAmount}
+                cursor={'pointer'}
               />
-              <Input 
-              type={'button'} 
-              value={"200"} 
-              bg={'#0057b7'} 
-              color={'white'}
-              onClick={updateAmount}
-              cursor={'pointer'}
+              <Input
+                type={'button'}
+                value={"200"}
+                bg={'#0057b7'}
+                color={'white'}
+                onClick={updateAmount}
+                cursor={'pointer'}
               />
             </HStack>
-              <Box
-                w={['full', 'sm']} p={6}
-                id={'paypal-donate-button-container'}
-              >
-                <PayPalButtons
-                  style={{
-                    color: "gold",
-                    shape: "pill",
-                    label: "paypal",
-                    tagline: false,
-                    layout: "vertical",
-                  }}
-                  createOrder={createOrder}
-                  onApprove={onApprove}
-                  onError={onError}
-                  onCancel={onError}
-                  className={'paypal'}
-                />
-              </Box>
+            <Box
+              w={['full', 'sm']} p={6}
+              id={'paypal-donate-button-container'}
+            >
+              <PayPalButtons
+                style={{
+                  color: "gold",
+                  shape: "pill",
+                  label: "paypal",
+                  tagline: false,
+                  layout: "vertical",
+                }}
+                createOrder={createOrder}
+                onApprove={onApprove}
+                onError={onError}
+                onCancel={onError}
+                className={'paypal'}
+              />
+            </Box>
           </ModalBody>
 
           <ModalFooter>
