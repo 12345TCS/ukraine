@@ -9,14 +9,8 @@ export default async function handler(req, res) {
                 line_items: [
                     {
                         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                        price_data: {
-                            unit_amount: parseInt(amount * 100),
-                            currency: 'usd',
-                            product_data: {
-                                name: 'Donation to Ukraine War Victims',
-                                description: 'You are helping Ukrainians get their life saving needs in the time of hardships.',
-                            }
-                        },
+                        price:'price_1Mj5aESJIWJGgVv7wbKqGjLn',
+                        product:'prod_NU3hvhmnD0nPWU',
                         quantity: 1,
                     },
                 ],

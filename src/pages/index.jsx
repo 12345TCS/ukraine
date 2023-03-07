@@ -29,9 +29,6 @@ import '@splidejs/react-splide/css/core'
 import { PayPalButtons, PayPalScriptProvider, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import Script from 'next/script'
 import Link from 'next/link'
-import { loadStripe } from '@stripe/stripe-js'
-import axios from 'axios'
-import { Elements } from '@stripe/react-stripe-js'
 
 const Index = () => {
   const [succeeded, setSucceeded] = useState(false);
@@ -39,10 +36,6 @@ const Index = () => {
   const [orderID, setOrderID] = useState(false);
   const [billingDetails, setBillingDetails] = useState("");
   const [{ options }, dispatch] = usePayPalScriptReducer()
-
-  let stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-  const [clientSecret, setClientSecret] = useState(null)
-  const [wantStripe, setWantStripe] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -127,20 +120,6 @@ const Index = () => {
     }
   })
 
-  // Create Stripe Order
-  useEffect(() => {
-    axios.post('/api/new-payment', {
-      amount: myAmount
-    }).then((res) => {
-      setClientSecret(res.data.clientSecret)
-    })
-  }, [myAmount])
-
-  function handleStripePayment(){
-    axios.post('/api/checkout-session', {
-      amount: myAmount,
-    })
-  }
 
   return (
     <>
@@ -174,15 +153,32 @@ const Index = () => {
         >
           Support Ukraine
         </Text>
-        <Button
-          rounded={'full'} px={6}
-          colorScheme={'yellow'}
-          bg={'#ffd700'} py={6}
-          fontWeight={'semibold'}
-          onClick={onOpen}
+
+        <Stack
+          direction={['column', 'row']}
+          spacing={[2,8]} w={'auto'}
+          alignItems={'center'}
+          justifyContent={'center'}
         >
-          Donate
-        </Button>
+          <Button
+            rounded={'full'}
+            colorScheme={'whatsapp'}
+            fontWeight={'semibold'}
+            size={'sm'}
+            onClick={onOpen} w={'full'}
+          >
+            Donate With Paypal
+          </Button>
+          <Link
+            href={'https://buy.stripe.com/8wMbL1ak0fAlg2kfYY'}
+            style={{ width: '100%' }} target={'_blank'}>
+            <Button
+              colorScheme={'yellow'}
+              rounded={'full'}
+              size={'sm'}
+            >Donate with Stripe</Button>
+          </Link>
+        </Stack>
 
       </HStack>
       <Box
@@ -210,21 +206,28 @@ const Index = () => {
             <br />
             Help them get their meals, medicines and safe shelter by donating for them.
           </Text>
-          {/* <Stack
-              direction={['column', 'row']}
-              p={4} spacing={8}
-            > */}
-          <Box w={'full'} h={16}></Box>
-          <Button
-            rounded={'full'} px={6}
-            colorScheme={'facebook'}
-            bg={'#0057b7'} py={6}
-            fontWeight={'semibold'}
-            onClick={onOpen}
+          <Stack
+            direction={['column', 'row']}
+            p={4} spacing={8} w={'auto'}
           >
-            Donate Now
-          </Button>
-          {/* </Stack> */}
+            <Button
+              rounded={'full'} p={6}
+              colorScheme={'facebook'}
+              bg={'#0057b7'}
+              fontWeight={'semibold'}
+              onClick={onOpen} w={'full'}
+            >
+              Donate With Paypal
+            </Button>
+            <Link
+              href={'https://buy.stripe.com/8wMbL1ak0fAlg2kfYY'}
+              style={{ width: '100%' }} target={'_blank'}>
+              <Button
+                colorScheme={'yellow'}
+                rounded={'full'} p={6}
+              >Donate with Stripe</Button>
+            </Link>
+          </Stack>
         </VStack>
       </Box>
 
@@ -258,15 +261,29 @@ const Index = () => {
             with the assistance they need. Our ultimate goal is to alleviate their suffering and contribute to
             a peaceful resolution of the conflict.
           </Text>
-          <Button
-            rounded={'full'} px={6}
-            colorScheme={'facebook'}
-            bg={'#0057b7'} py={6}
-            fontWeight={'semibold'}
-            onClick={onOpen}
+
+          <Stack
+            direction={['column', 'row']}
+            p={4} spacing={8} w={'auto'}
           >
-            Gift Them A Smile
-          </Button>
+            <Button
+              rounded={'full'} p={6}
+              colorScheme={'facebook'}
+              bg={'#0057b7'}
+              fontWeight={'semibold'}
+              onClick={onOpen} w={'full'}
+            >
+              Donate With Paypal
+            </Button>
+            <Link
+              href={'https://buy.stripe.com/8wMbL1ak0fAlg2kfYY'}
+              style={{ width: '100%' }} target={'_blank'}>
+              <Button
+                colorScheme={'yellow'}
+                rounded={'full'} p={6}
+              >Donate with Stripe</Button>
+            </Link>
+          </Stack>
         </Box>
         <Image src='/child.png' w={['full', 'sm']} roundedBottom={16} />
       </Stack>
@@ -481,16 +498,27 @@ const Index = () => {
 
         <Text fontSize={'2xl'} textAlign={'center'}>Come, be a part of this intiative.</Text>
 
-
-        <Button
-          rounded={'full'} px={6}
-          colorScheme={'yellow'}
-          bg={'#ffd700'} py={6}
-          fontWeight={'semibold'}
-          onClick={onOpen}
+        <Stack
+          direction={['column', 'row']}
+          p={4} spacing={8} w={'auto'}
         >
-          Donate Now
-        </Button>
+          <Button
+            rounded={'full'} p={6}
+            colorScheme={'yellow'}
+            fontWeight={'semibold'}
+            onClick={onOpen} w={'full'}
+          >
+            Donate With Paypal
+          </Button>
+          <Link
+            href={'https://buy.stripe.com/8wMbL1ak0fAlg2kfYY'}
+            style={{ width: '100%' }} target={'_blank'}>
+            <Button
+              colorScheme={'yellow'}
+              rounded={'full'} p={6}
+            >Donate with Stripe</Button>
+          </Link>
+        </Stack>
       </VStack>
       <VStack p={4} bg={'blue.900'} color={'white'}>
         <Link href={'mailto:support@helpukrainepeoples.com'} target={'_blank'}>
@@ -556,15 +584,7 @@ const Index = () => {
                 onError={onError}
                 onCancel={onError}
                 className={'paypal'}
-                onClick={() => setWantStripe(false)}
               />
-              <Box w={'full'} h={'4'}></Box>
-              <Text textAlign={'center'}>Or</Text>
-              <Button
-                colorScheme={'yellow'}
-                onClick={handleStripePayment}
-                w={'full'} rounded={'full'}
-              >Donate with Stripe</Button>
             </Box>
           </ModalBody>
 
