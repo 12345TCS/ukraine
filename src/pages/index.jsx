@@ -29,6 +29,9 @@ import '@splidejs/react-splide/css/core'
 import { PayPalButtons, PayPalScriptProvider, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import Script from 'next/script'
 import Link from 'next/link'
+import { loadStripe } from '@stripe/stripe-js'
+import axios from 'axios'
+import { Elements } from '@stripe/react-stripe-js'
 
 const Index = () => {
   const [succeeded, setSucceeded] = useState(false);
@@ -36,6 +39,10 @@ const Index = () => {
   const [orderID, setOrderID] = useState(false);
   const [billingDetails, setBillingDetails] = useState("");
   const [{ options }, dispatch] = usePayPalScriptReducer()
+
+  let stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  const [clientSecret, setClientSecret] = useState(null)
+  const [wantStripe, setWantStripe] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -119,6 +126,21 @@ const Index = () => {
       window.Tawk_API.hideWidget();
     }
   })
+
+  // Create Stripe Order
+  useEffect(() => {
+    axios.post('/api/new-payment', {
+      amount: myAmount
+    }).then((res) => {
+      setClientSecret(res.data.clientSecret)
+    })
+  }, [myAmount])
+
+  function handleStripePayment(){
+    axios.post('/api/checkout-session', {
+      amount: myAmount,
+    })
+  }
 
   return (
     <>
@@ -534,7 +556,15 @@ const Index = () => {
                 onError={onError}
                 onCancel={onError}
                 className={'paypal'}
+                onClick={() => setWantStripe(false)}
               />
+              <Box w={'full'} h={'4'}></Box>
+              <Text textAlign={'center'}>Or</Text>
+              <Button
+                colorScheme={'yellow'}
+                onClick={handleStripePayment}
+                w={'full'} rounded={'full'}
+              >Donate with Stripe</Button>
             </Box>
           </ModalBody>
 
